@@ -47,33 +47,40 @@ numbers.forEach(function(number){
         input.append(number.value);
     });
 });
-
+let justCalculated = false;
 const operators = document.querySelectorAll(".operator");
 operators.forEach(function(operator){
     operator.addEventListener("click",()=>{
-       
+       if(justCalculated){
+            fnumber = parseFloat(input.textContent);
+            selectedOperator = operator.value;
+            Snumber = undefined;
+            input.textContent="";
+            justCalculated = false;
+            return;
+        }
         if(selectedOperator!==undefined){
         Snumber = parseFloat(input.textContent);
         const result = operate(fnumber,Snumber,selectedOperator);
         fnumber = result;
-        input.textContent="";
+        input.textContent= "";
         }else{
         fnumber = parseFloat(input.textContent);
         }
         selectedOperator=operator.value;
+        Snumber=undefined;
         input.textContent="";
     });
 });
 
 const equals = document.querySelector(".eoperator");
 equals.addEventListener("click",()=>{
-    if(Snumber===undefined){
-        Snumber=parseFloat(input.textContent);
-    }
+    
+    Snumber=parseFloat(input.textContent);
     const result = operate(fnumber,Snumber,selectedOperator);
     input.textContent = result;
     fnumber = result;
-
+    justCalculated = true;
 });
 
 const clear = document.querySelector(".clear");
@@ -82,6 +89,7 @@ clear.addEventListener("click",()=>{
     fnumber = undefined;// this removes fnumber from memory
     Snumber = undefined;// this removes Snumber from memory
     selectedOperator = undefined;// this removes any operators used from memory
+    justCalculated = false;
 })
 
 
