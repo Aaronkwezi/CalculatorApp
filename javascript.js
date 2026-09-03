@@ -10,7 +10,12 @@ function multiply(a,b){
     return a*b;
 }
 function divide(a,b){
+    
+    if(b === 0){
+        return "Invalid function";
+    }else{
     return a/b;
+}
 }
 
 let fnumber;
@@ -36,17 +41,18 @@ const input = document.querySelector(".queries");
 input.textContent="";
 const numbers =  document.querySelectorAll(".btn");
 
-numbers.forEach(function(button){
-    button.addEventListener("click",()=>{
-        input.append(button.value);
+numbers.forEach(function(number){
+    number.addEventListener("click",()=>{
+        input.append(number.value);
     });
 });
 
 const operators = document.querySelectorAll(".operator");
-operators.forEach(function(button){
-    button.addEventListener("click",()=>{
+operators.forEach(function(operator){
+    operator.addEventListener("click",()=>{
         fnumber = parseFloat(input.textContent);
-        selectedOperator=button.value;
+        selectedOperator=operator.value;
+        Snumber=undefined;
         input.textContent="";
         
     });
@@ -54,11 +60,21 @@ operators.forEach(function(button){
 
 const equals = document.querySelector(".eoperator");
 equals.addEventListener("click",()=>{
-    Snumber=parseFloat(input.textContent);
-    result = operate(fnumber,Snumber,selectedOperator);
-    input.textContent=result;
+    if(Snumber===undefined){
+        Snumber=parseFloat(input.textContent);
+    }
+    const result = operate(fnumber,Snumber,selectedOperator);
+    input.textContent = result;
+    fnumber = result;
 })
 
+const clear = document.querySelector(".clear");
+clear.addEventListener("click",()=>{
+    input.textContent="";//clears the screen
+    fnumber = undefined;// this removes fnumber from memory
+    Snumber = undefined;// this removes Snumber from memory
+    selectedOperator = undefined;// this removes any operators used from memory
+})
 
 
 
