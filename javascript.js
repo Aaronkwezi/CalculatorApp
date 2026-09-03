@@ -21,6 +21,7 @@ function divide(a,b){
 let fnumber;
 let selectedOperator;
 let Snumber;
+
 function operate(fnumber,Snumber,oper){
 
     if (oper==="+"){
@@ -50,11 +51,17 @@ numbers.forEach(function(number){
 const operators = document.querySelectorAll(".operator");
 operators.forEach(function(operator){
     operator.addEventListener("click",()=>{
-        fnumber = parseFloat(input.textContent);
-        selectedOperator=operator.value;
-        Snumber=undefined;
+       
+        if(selectedOperator!==undefined){
+        Snumber = parseFloat(input.textContent);
+        const result = operate(fnumber,Snumber,selectedOperator);
+        fnumber = result;
         input.textContent="";
-        
+        }else{
+        fnumber = parseFloat(input.textContent);
+        }
+        selectedOperator=operator.value;
+        input.textContent="";
     });
 });
 
@@ -66,7 +73,8 @@ equals.addEventListener("click",()=>{
     const result = operate(fnumber,Snumber,selectedOperator);
     input.textContent = result;
     fnumber = result;
-})
+
+});
 
 const clear = document.querySelector(".clear");
 clear.addEventListener("click",()=>{
