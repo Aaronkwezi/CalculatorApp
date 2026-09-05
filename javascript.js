@@ -39,6 +39,7 @@ function operate(fnumber,Snumber,oper){
 const input = document.querySelector(".queries");
 input.textContent="";
 const numbers =  document.querySelectorAll(".btn");
+
 let justCalculated = false;
 numbers.forEach(function(number){
     number.addEventListener("click",()=>{
