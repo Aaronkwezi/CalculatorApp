@@ -30,6 +30,18 @@ h1{
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    
+}
+.btn, .operator, .eoperator, .clear{
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ccc;
+    cursor: pointer;
+}
+.btn:hover, .operator:hover, .eoperator:hover, .clear:hover{
+    background-color: #aaa;
 }
  .queries{
     width: 100%;
@@ -38,4 +50,7 @@ h1{
     margin: 10px 0;
     border-radius: 5px;
     background-color: beige;
+    text-align: right;
+    font-size: 20px;
+    padding: 10px;
 }
