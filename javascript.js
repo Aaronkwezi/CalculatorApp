@@ -1,5 +1,3 @@
-
-
 function add(a,b){
     return a+b;
 }
@@ -40,6 +38,10 @@ function operate(fnumber,Snumber,oper){
 
 const input = document.querySelector(".queries");
 input.textContent="";
+input.style.textAlign = "right";
+input.style.fontSize = "20px";
+input.style.padding = "10px";
+input.classList.add("input");
 const numbers =  document.querySelectorAll(".btn");
 
 numbers.forEach(function(number){
@@ -47,20 +49,25 @@ numbers.forEach(function(number){
         input.append(number.value);
     });
 });
+
 let justCalculated = false;
+
 const operators = document.querySelectorAll(".operator");
 operators.forEach(function(operator){
     operator.addEventListener("click",()=>{
        if(justCalculated){
             fnumber = parseFloat(input.textContent);
             selectedOperator = operator.value;
+            input.textContent=selectedOperator;
             Snumber = undefined;
             input.textContent="";
             justCalculated = false;
             return;
         }
         if(selectedOperator!==undefined){
+
         Snumber = parseFloat(input.textContent);
+    
         const result = operate(fnumber,Snumber,selectedOperator);
         fnumber = result;
         input.textContent= "";
@@ -68,8 +75,8 @@ operators.forEach(function(operator){
         fnumber = parseFloat(input.textContent);
         }
         selectedOperator=operator.value;
+        input.textContent=selectedOperator;
         Snumber=undefined;
-        input.textContent="";
     });
 });
 
